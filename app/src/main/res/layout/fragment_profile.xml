@@ -6,8 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="200dp"
@@ -59,7 +57,7 @@
 
             <TextView
                 android:paddingLeft="10dp"
-                android:id="@+id/profilPhone"
+                android:id="@+id/profilePhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tel: 4611194242"
@@ -71,7 +69,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/profilePhoto"/>
 
             <TextView
-                android:id="@+id/profilAddress"
+                android:id="@+id/profileAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -91,7 +89,7 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profilAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/profileAddress" />
 
             <ImageView
                 android:id="@+id/profileInstagram"
@@ -102,7 +100,7 @@
                 android:src="@drawable/instagram"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profilAddress"/>
+                app:layout_constraintTop_toBottomOf="@+id/profileAddress"/>
 
             <ImageView
                 android:id="@+id/profileTwitter"
@@ -113,7 +111,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/profileInstagram"
                 app:layout_constraintStart_toEndOf="@+id/profileFacebook"
-                app:layout_constraintTop_toBottomOf="@+id/profilAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/profileAddress" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

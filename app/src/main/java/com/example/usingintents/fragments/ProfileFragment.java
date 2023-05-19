@@ -1,5 +1,7 @@
 package com.example.usingintents.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,37 +9,26 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.usingintents.R;
+import com.example.usingintents.models.User;
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private User profileUser;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
+    public static ProfileFragment newInstance(User user) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(ARG_PARAM1, user);
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,15 +37,35 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            profileUser = (User) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        TextView profileFullName = view.findViewById(R.id.profileFullName);
+        TextView profileEmail = view.findViewById(R.id.profileEmail);
+        TextView profilePhone = view.findViewById(R.id.profilePhone);
+        TextView profileAddress = view.findViewById(R.id.profileAddress);
+        ImageView profilePhoto = view.findViewById(R.id.profilePhoto);
+
+        //TODO: INVESTIGAR CÓMO ABRIR APLICACIÓN EN LUGAR DE NAVEGADOR
+        ImageView profileFacebook = view.findViewById(R.id.profileFacebook);
+        profileFacebook.setOnClickListener((v)->{
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(profileUser.getFacebook()));
+            startActivity(intent);
+        });
+
+        profileFullName.setText(profileUser.getFirstName() + " " + profileUser.getLastName());
+        profileEmail.setText(profileUser.getEmail());
+        profilePhone.setText(profileUser.getPhone());
+        profileAddress.setText(profileUser.getAddress());
+        profilePhoto.setImageResource(profileUser.getPhoto());
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return view;
     }
 }
